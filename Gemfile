@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.3'
+
 gem 'rails', '4.2.6'
 gem 'pg', '~> 0.15'
 gem 'sass-rails', '~> 5.0'
@@ -15,17 +17,28 @@ gem 'puma'
 gem 'fog'
 gem 'carrierwave'
 gem 'foundation-rails'
+gem 'rack-timeout'
+gem 'simple_form'
 
 group :development, :test do
-  gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'valid_attribute'
+  gem 'shoulda'
+  gem 'capybara'
+
+  gem 'quiet_assets'
+  gem 'pry-rails'
 end
 
 group :test do
-  gem 'capybara'
   gem 'launchy', require: false
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
