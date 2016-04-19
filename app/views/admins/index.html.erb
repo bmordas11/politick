@@ -1,0 +1,13 @@
+<h1>The Admin Page</h1>
+
+<h3>The Admins</h3>
+
+<% @admins.each do |admin| %>
+  <li><%= admin.full_name %></li>
+<% end %>
+
+<h3>The Users</h3>
+
+<% @users.each do |user| %>
+  <li><%= user.full_name %></li>
+<% end %>

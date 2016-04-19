@@ -1,6 +1,9 @@
 FactoryGirl.define do
   factory :comment do
-    title "MyString"
-    body "MyText"
+    sequence(:title) { |n| "Cool Title #{n}" }
+    sequence(:body) { |n| "Cool review body with stuff #{n}." }
+
+    politician
+    user
   end
 end

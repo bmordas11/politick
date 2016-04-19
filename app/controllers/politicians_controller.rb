@@ -33,6 +33,7 @@ class PoliticiansController < ApplicationController
   end
 
   protected
+
   def politician_params
     params.require(:politician).permit(
       :first_name,

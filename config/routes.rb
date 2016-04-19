@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :politicians, only: [:index, :show, :new, :create] do
     resources :comments, only: [:create]
   end
+
+  resources :admins
 end
