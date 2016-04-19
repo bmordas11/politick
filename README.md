@@ -1,3 +1,7 @@
+![Build Status](https://codeship.com/projects/politick/status?branch=master)
+![Code Climate](https://codeclimate.com/github/bmordas11/politick.png)
+[![Coverage Status](https://coveralls.io/repos/github/bmordas11/politick/badge.svg?branch=master)](https://coveralls.io/github/bmordas11/politick?branch=master)
+
 # politick
 
 ## A site to help voters stay informed about elections and politicians
