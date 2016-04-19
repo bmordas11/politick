@@ -4,14 +4,30 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Politick" %></title>
 
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
+    <% flash.each do |name, msg| %>
+      <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
+    <% end %>
+
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <%= render partial: "navigation_bar" %>
+        <ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <%= render partial: "navigation_bar_right" %>
+        <ul>
+      </div>
+    </div>
 
     <%= yield %>
 
