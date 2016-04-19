@@ -1,4 +1,4 @@
-![Build Status](https://codeship.com/projects/politick/status?branch=master)
+[ ![Codeship Status](https://codeship.com/projects/e2942930-e86e-0133-a8e1-46bb3aa6b241/status?branch=master)](https://codeship.com/projects/147224)
 ![Code Climate](https://codeclimate.com/github/bmordas11/politick.png)
 [![Coverage Status](https://coveralls.io/repos/github/bmordas11/politick/badge.svg?branch=master)](https://coveralls.io/github/bmordas11/politick?branch=master)
 
