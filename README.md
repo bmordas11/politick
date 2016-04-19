@@ -2,7 +2,7 @@
 
 ![Code Climate](https://codeclimate.com/github/bmordas11/politick.png)
 
-Coveralls test coverage: [![Coverage Status](https://coveralls.io/repos/github/bmordas11/politick/badge.svg?branch=master)](https://coveralls.io/github/bmordas11/politick?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/bmordas11/politick/badge.svg?branch=master)](https://coveralls.io/github/bmordas11/politick?branch=master)
 
 # politick
 
