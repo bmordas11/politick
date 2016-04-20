@@ -1,17 +1,52 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
+
+ *= require_tree
  *= require_self
  *= require foundation_and_overrides
 
  */
+@import 'settings';
+//
+// body {
+//   background-color: #ffefc1;
+// }
+//
+// .form-actions .form-inputs {
+//   background-color: $custom-color2;
+// }
+//
+// .top-bar {
+//   background-color: $custom-color1;
+// }
+//
+// * {
+//   a:link { color: $custom-color4; text-decoration: none; }
+//   a:active { color: #000040; text-decoration: none; }
+//   a:visited { color: $custom-color3; text-decoration: none; }
+//   a:hover { color: $custom-color2; text-decoration: none; }
+// }
+
+.row {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.flash-headers .alert-warning #bottom-bar {
+  background-color: $custom-color1;
+  color: $white;
+}
+
+.flash-headers .alert-success .alert-notice #bottom-bar {
+  background-color: $custom-color4;
+  color: $white;
+}
+
+#bottom-bar {
+  height: 80px;
+  background-color: $light-gray;
+  margin-bottom: 0px;
+}
+
+.menu-text {
+  text-align: center;
+}

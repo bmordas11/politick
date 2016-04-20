@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'politicians#index'
 
-  resources :politicians, only: [:index, :show, :new, :create] do
-    resources :comments, only: [:create]
+  resources :politicians do
+    resources :comments, only: [:create, :edit, :update, :destroy]
   end
+
+  resources :admins
 end
