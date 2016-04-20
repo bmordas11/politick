@@ -5,7 +5,7 @@
  *= require foundation_and_overrides
 
  */
-@import 'settings';
+@import "settings";
 //
 // body {
 //   background-color: #ffefc1;
@@ -44,7 +44,7 @@
 #bottom-bar {
   height: 80px;
   background-color: $light-gray;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .menu-text {
