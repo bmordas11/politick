@@ -1,5 +1,7 @@
 <h1>Politicians Index</h1>
 
 <% @politicians.each do |politician| %>
-  <li><%= politician %></li>
+  <li>
+    <%= link_to(politician.full_name, politician_path(politician)) %>
+  </li>
 <% end %>

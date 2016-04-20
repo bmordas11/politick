@@ -1,0 +1,28 @@
+<div class="column small-12">
+  <h1><%= @politician.full_name %> Show Page</h1>
+  <ul>
+    <li><%= @politician.political_party %></li>
+    <li><%= @politician.place_of_birth %></li>
+    <li><%= @politician.stance %></li>
+    <li>Birthday: <%= @politician.birthday %></li>
+  </ul>
+
+  <h3>Comments for this Politician</h3>
+  <% @comments.each do |comment| %>
+      <% if comment.comment_owner?(current_user) ||
+        current_user.role == 'admin' %>
+
+        <%= link_to 'Edit This Comment',
+          edit_politician_comment_path(@politician, comment), class: 'button' %>
+        <%= link_to "Delete This Comment",
+          politician_comment_path(@politician, comment), class: 'button',
+          method: :delete, data: {confirm: "Definitely delete this comment?"} %>
+      <% end %>
+    <li>
+      <p><%= comment.body %></p>
+      <p><%= comment.rating %></p>
+    </li>
+  <% end %>
+  <%= render partial: 'new_comment_form', object: @comment %>
+  <%= javascript_include_tag "comments_votes.js" %>
+</div>

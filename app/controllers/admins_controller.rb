@@ -2,8 +2,9 @@ class AdminsController < ApplicationController
   before_action :authorize_user
 
   def index
-    @users = User.all
     @admins = User.where(role: 'admin')
+    @users = User.all - @admins
+    @politicians = Politician.all
   end
 
   def show

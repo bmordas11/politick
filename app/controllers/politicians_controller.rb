@@ -1,5 +1,5 @@
 class PoliticiansController < ApplicationController
-  before_action :authorize_user, except: [:index, :show]
+  before_action :authorize_user, except: [:index, :show, :new, :create]
 
   def index
     # @politicians = if params[:search] && params[:search] != ""
@@ -17,6 +17,8 @@ class PoliticiansController < ApplicationController
 
   def show
     @politician = Politician.find(params[:id])
+    @comments = @politician.comments
+    @comment = Comment.new
   end
 
   def new
@@ -26,10 +28,11 @@ class PoliticiansController < ApplicationController
   def create
     @politician = politician.new(politician_params)
     if @politician.save
-      redirect_to @politician, notice: "Successfully added politician."
+      flash[:sucess] = "Successfully added politician."
     else
-      render :new
+      flash[:warning] = "Politician not added."
     end
+    redirect_to @politician
   end
 
   protected

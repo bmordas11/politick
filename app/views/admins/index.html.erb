@@ -9,5 +9,11 @@
 <h3>The Users</h3>
 
 <% @users.each do |user| %>
-  <li><%= user.full_name %></li>
+  <li><%= link_to user.full_name, edit_user_registration_path(user) %></li>
+<% end %>
+
+<h3>The Politicians</h3>
+
+<% @politicians.each do |politician| %>
+  <li><%= link_to politician.full_name, politician_path(politician) %></li>
 <% end %>
