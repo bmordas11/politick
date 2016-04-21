@@ -19,6 +19,7 @@ gem 'carrierwave'
 gem 'foundation-rails'
 gem 'rack-timeout'
 gem 'devise'
+gem 'pg_search'
 
 group :development, :test do
   gem 'rspec-rails'

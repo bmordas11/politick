@@ -6,6 +6,7 @@
 
  */
 @import "settings";
+@import 'mixins';
 
 .row {
   margin-bottom: 1em;
@@ -34,4 +35,35 @@
 
 .form-inputs, .sign-ups, .sign-extras {
   padding-left: 200px;
+}
+
+.top-bar-left {
+  padding-top: 15px;
+}
+
+.form-title {
+  padding-left: 200px;
+  padding-bottom: 20px;
+}
+
+.politician-info {
+  @include rounded();
+  @include box-shadow(1px, 1px, 1px, $light-gray);
+  background-color: $custom-color5;
+  padding: 10px;
+}
+
+.comments {
+  @include rounded();
+  background-color: $custom-color4;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.button {
+  @include rounded();
+}
+
+.row .votes {
+  background-color: $custom-color5;
 }

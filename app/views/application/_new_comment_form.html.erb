@@ -1,14 +1,19 @@
 <h4>Review This Politician</h4>
 <%= form_for [@politician, @comment] do |f| %>
   <div class="row">
-    <%= f.text_area :body, rows: 8, value: @comment.body %>
+    <div class="columns small-9">
+      <%= f.text_area :body, rows: 8,
+        value: (@comment.body if @comment.body != "(No comment)") %>
 
-    <%= f.label :rating %>
-    <%= f.collection_radio_buttons(:rating,
+      <%= f.label :rating %>
+      <%= f.collection_radio_buttons(:rating,
       [[1], [2], [3], [4], [5]], :first, :last) %>
+    </div>
   </div>
 
   <div class="row">
-    <%= f.submit "Add Comment", class: 'button' %>
+    <div class="columns small-9">
+      <%= f.submit "Add Comment", class: 'button' %>
+    </div>
   </div>
 <% end %>

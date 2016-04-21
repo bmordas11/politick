@@ -5,6 +5,25 @@ class Politician < ActiveRecord::Base
   validates :first_name, uniqueness: {scope: [:last_name, :political_party]}
   validates :last_name, presence: true, length: { in: 1..70 }
   validates :political_party, presence: true, length: { in: 1..70 }
+  validates :stance, presence: true, length: { in: 0..3000 }
+
+  include PgSearch
+  pg_search_scope :search_by_attributes, against: [
+    :first_name,
+    :last_name,
+    :political_party,
+    :place_of_birth,
+    :stance
+  ]
+
+  pg_search_scope :search_comments, associated_against:
+    { comments: [:body, :rating] }
+
+  scope :search, -> (query) do
+    if query.present?
+      search_by_attributes(query) + search_comments(query)
+    end
+  end
 
   def full_name
     "#{first_name} #{last_name}"

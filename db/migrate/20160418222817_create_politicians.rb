@@ -4,8 +4,8 @@ class CreatePoliticians < ActiveRecord::Migration
       t.string :first_name, null: false
       t.string :last_name, null: false
       t.string :political_party, null: false
+      t.text :stance, null: false, default: "(No stance added)"
       t.string :place_of_birth
-      t.text :stance
       t.date :birthday
 
       t.timestamps null: false
