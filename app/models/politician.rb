@@ -1,5 +1,5 @@
 class Politician < ActiveRecord::Base
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates :first_name, presence: true, length: { in: 1..70 }
   validates :first_name, uniqueness: {scope: [:last_name, :political_party]}
