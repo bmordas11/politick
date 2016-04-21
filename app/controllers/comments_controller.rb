@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authorize_user
+  before_filter :authenticate_user!, except: [:index]
 
   def new
     @politician = Politician.new
@@ -61,11 +61,5 @@ class CommentsController < ApplicationController
       :politician_id,
       :user_id
     )
-  end
-
-  def authorize_user
-    if !user_signed_in?
-      raise ActionController::RoutingError.new("Not Found")
-    end
   end
 end
