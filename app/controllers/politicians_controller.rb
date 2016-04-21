@@ -1,5 +1,5 @@
 class PoliticiansController < ApplicationController
-  before_action :authorize_user, except: [:index, :show, :new, :create]
+  before_filter :authenticate_user!, except: [:show, :index]
 
   def index
     # @politicians = if params[:search] && params[:search] != ""
@@ -30,7 +30,8 @@ class PoliticiansController < ApplicationController
     if @politician.save
       flash[:sucess] = "Successfully added politician."
     else
-      flash[:warning] = "Politician not added."
+      flash[:warning] = @politician.errors.full_messages.join(', ')
+      flash[:warning] += ". Politician not added."
     end
     redirect_to @politician
   end
@@ -47,10 +48,5 @@ class PoliticiansController < ApplicationController
       :birthday
     )
   end
-
-  def authorize_user
-    if !user_signed_in? || !current_user.admin?
-      raise ActionController::RoutingError.new("Not Found")
-    end
-  end
+  
 end

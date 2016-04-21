@@ -26,6 +26,7 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'shoulda'
   gem 'capybara'
+  gem 'faker'
 
   gem 'quiet_assets'
   gem 'pry-rails'
