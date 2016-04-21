@@ -6,37 +6,18 @@
 
  */
 @import "settings";
-//
-// body {
-//   background-color: #ffefc1;
-// }
-//
-// .form-actions .form-inputs {
-//   background-color: $custom-color2;
-// }
-//
-// .top-bar {
-//   background-color: $custom-color1;
-// }
-//
-// * {
-//   a:link { color: $custom-color4; text-decoration: none; }
-//   a:active { color: #000040; text-decoration: none; }
-//   a:visited { color: $custom-color3; text-decoration: none; }
-//   a:hover { color: $custom-color2; text-decoration: none; }
-// }
 
 .row {
   margin-bottom: 1em;
   margin-top: 1em;
 }
 
-.flash-headers .alert-warning #bottom-bar {
+.flash-headers, .alert-warning {
   background-color: $custom-color1;
   color: $white;
 }
 
-.flash-headers .alert-success .alert-notice #bottom-bar {
+.flash-headers, .alert-success, .alert-notice {
   background-color: $custom-color4;
   color: $white;
 }
@@ -51,10 +32,6 @@
   text-align: center;
 }
 
-.form-inputs {
-  padding-left: 200px;
-}
-
-.sign-ups {
+.form-inputs, .sign-ups, .sign-extras {
   padding-left: 200px;
 }
