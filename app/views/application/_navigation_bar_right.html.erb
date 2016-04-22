@@ -11,7 +11,7 @@
 <% end %>
 <li class="menu-text">
   <%= form_tag politicians_path, method: :get do %>
-    <%= text_field_tag :query %>
+    <%= text_field_tag :query, params[:query], placeholder: "Search Politicians" %>
     <%= submit_tag "Search" %>
   <% end %>
 </li>
