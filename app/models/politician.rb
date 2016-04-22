@@ -16,8 +16,8 @@ class Politician < ActiveRecord::Base
     :stance
   ], using: { tsearch: { prefix: true, dictionary: "english" } }
 
-  pg_search_scope :search_comments, associated_against:
-    { comments: [:body, :rating] },
+  pg_search_scope :search_comments,
+    associated_against: { comments: [:body, :rating] },
     using: { tsearch: { prefix: true, dictionary: "english" } }
 
   scope :search, -> (query) do
