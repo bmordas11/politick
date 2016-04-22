@@ -1,27 +1,65 @@
 <div class="column small-12">
   <h1><%= @politician.full_name %> Show Page</h1>
-  <ul>
-    <li><%= @politician.political_party %></li>
-    <li><%= @politician.place_of_birth %></li>
-    <li><%= @politician.stance %></li>
-    <li>Birthday: <%= @politician.birthday %></li>
-  </ul>
+  <div class="row">
+    <div class="small-2 columns politician-info">
+      <%= @politician.political_party %>
+    </div>
+    <div class="small-3 columns politician-info">
+      Birthplace: <%= @politician.place_of_birth %>
+    </div>
+    <div class="small-3 columns end politician-info">
+      Birthday: <%= @politician.birthday %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-8 columns politician-info">
+      Stance: <%= @politician.stance %>
+    </div>
+  </div>
 
   <h3>Comments for this Politician</h3>
-  <% @comments.each do |comment| %>
-      <% if comment.comment_owner?(current_user) ||
-        current_user.role == 'admin' %>
+  <div class="row">
+    <p class="small-1 columns">User</p>
+    <p class="comments small-5 columns">Comment</p>
+    <p class="small-1 columns end">Rating</p>
+  </div>
 
-        <%= link_to 'Edit This Comment',
-          edit_politician_comment_path(@politician, comment), class: 'button' %>
-        <%= link_to "Delete This Comment",
-          politician_comment_path(@politician, comment), class: 'button',
-          method: :delete, data: {confirm: "Definitely delete this comment?"} %>
+  <% @comments.each do |comment| %>
+    <div class="row" id="comment-id-<%= comment.id %>">
+      <p class="small-1 columns"><%= comment.user.full_name %></p>
+      <div class="comments small-5 columns">
+        <% if comment.body != '' %>
+          <%= comment.body %>
+        <% else %>
+          <p>(No comment)</p>
+        <% end %>
+      </div>
+      <p class="small-1 columns"><%= comment.rating %></p>
+
+      <div class="small-1 columns votes" style="height: 30px; padding-left: 60px; padding-top: 20px;">
+        <div class="arrow-up" id="upvote">
+          <img src="../public/assets/up_arrow.png" alt="upvote">
+          <%= @upvotes %>
+        </div>
+        <div class="arrow-down" id="downvote">
+          <%= @downvotes %>
+        </div>
+      </div>
+
+      <% if !(current_user.nil?) %>
+        <% if comment.comment_owner?(current_user) || current_user.role == 'admin' %>
+          <div class="small-1 columns">
+            <%= link_to 'Edit Comment',
+            edit_politician_comment_path(@politician, comment), class: 'button' %>
+          </div>
+          <div class="small-1 columns end">
+            <%= link_to "Delete Comment",
+            politician_comment_path(@politician, comment), class: 'button',
+            method: :delete, data: {confirm: "Definitely delete this comment?"} %>
+          </div>
+        <% end %>
       <% end %>
-    <li>
-      <p><%= comment.body %></p>
-      <p><%= comment.rating %></p>
-    </li>
+    </div>
   <% end %>
   <%= render partial: 'new_comment_form', object: @comment %>
   <%= javascript_include_tag "comments_votes.js" %>

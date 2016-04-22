@@ -2,17 +2,11 @@ class PoliticiansController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index]
 
   def index
-    # @politicians = if params[:search] && params[:search] != ""
-    #           if !(Politician.search(params[:search]).nil?)
-    #             Politician.search(params[:search])
-    #           else
-    #             []
-    #           end
-    #         else
-    #           Politician.all.order('created_at DESC')
-    #         end
-
-    @politicians = Politician.all
+    @no_results = false
+    @politicians = Politician.search(params[:query])
+    if @politicians.empty? && params[:query]
+      @no_results = true
+    end
   end
 
   def show
@@ -26,7 +20,7 @@ class PoliticiansController < ApplicationController
   end
 
   def create
-    @politician = politician.new(politician_params)
+    @politician = Politician.new(politician_params)
     if @politician.save
       flash[:sucess] = "Successfully added politician."
     else
@@ -48,5 +42,5 @@ class PoliticiansController < ApplicationController
       :birthday
     )
   end
-  
+
 end

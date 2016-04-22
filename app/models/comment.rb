@@ -1,8 +1,8 @@
 class Comment < ActiveRecord::Base
   belongs_to :politician
   belongs_to :user
+  has_many :commentVotes
 
-  validates :body, presence: true, length: { in: 1..1000 }
   validates :user_id, presence: true
   validates :politician_id, presence: true
 

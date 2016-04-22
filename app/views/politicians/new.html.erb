@@ -1,0 +1,23 @@
+<div class="body-background">
+  <h4 class='form-title'>New Politician Page</h4>
+  <div="row">
+    <div class="medium-8 medium-centered columns">
+      <%= form_for Politician.new do |f| %>
+        <%= f.label :first_name, 'First Name' %>
+        <%= f.text_field :first_name, id: "First Name",  style: 'display: block; background-color: #7C8C91;' %>
+        <%= f.label :last_name, 'Last Name' %>
+        <%= f.text_field :last_name, id: "Last Name",  style: 'display: block; background-color: #7C8C91;' %>
+        <%= f.label :political_party, 'Political Party' %>
+        <%= f.text_field :political_party, id: "Political Party", style: 'display: block; background-color: #7C8C91;' %>
+        <%= f.label :place_of_birth, 'Place of Birth' %>
+        <%= f.text_field :place_of_birth, id: "Place of Birth", style: 'display: block; background-color: #7C8C91;' %>
+        <%= f.label :birthday, 'Birthday' %>
+        <%= f.text_field :birthday, id: "Birthday", style: 'display: block; background-color: #7C8C91;' %>
+        <%= f.label :stance, 'Stance' %>
+        <%= f.text_field :stance, value: "", id: "Stance", style: 'display: block; background-color: #7C8C91;' %>
+
+        <%= f.submit "Add Politician" %>
+      <% end %>
+    </div>
+  </div>
+</div>

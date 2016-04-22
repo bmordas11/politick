@@ -49,6 +49,7 @@ $custom-color1: #8d230f;
 $custom-color2: #1e434c;
 $custom-color3: #9b4f0f;
 $custom-color4: #c99e10;
+$custom-color5: #e9d89f;
 
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
@@ -60,12 +61,12 @@ $foundation-palette: (
   warning: #ffae00,
   alert: #ec5840,
 );
-$light-gray: #e6e6e6;
+$light-gray: #dbdbdb;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0a0a0a;
 $white: #fefefe;
-$body-background: $white;
+$body-background: #eaeaea;
 $body-font-color: $custom-color2;
 $body-font-family: 'Roboto', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
