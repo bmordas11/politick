@@ -3,11 +3,15 @@ class PoliticiansController < ApplicationController
 
   def index
     @no_results = false
-    @politicians = Politician.search('%' + "#{params[:query]}" + '%')
-    if @politicians.empty? && params[:query]
-      @no_results = true
-    elsif !(params[:query])
+
+    if params[:query] == '' || params[:query].nil?
       @politicians = Politician.all
+    elsif params[:query].present?
+      @politicians = Politician.search('%' + params[:query] + '%')
+    end
+
+    if @politicians.empty?
+      @no_results = true
     end
   end
 

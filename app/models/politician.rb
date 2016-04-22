@@ -14,10 +14,11 @@ class Politician < ActiveRecord::Base
     :political_party,
     :place_of_birth,
     :stance
-  ]
+  ], using: { tsearch: { prefix: true, dictionary: "english" } }
 
   pg_search_scope :search_comments, associated_against:
-    { comments: [:body, :rating] }
+    { comments: [:body, :rating] },
+    using: { tsearch: { prefix: true, dictionary: "english" } }
 
   scope :search, -> (query) do
     if query.present?
