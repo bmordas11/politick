@@ -1,13 +1,12 @@
 window.onload = init();
-var id;
 
-function init(){
-  document.getElementById("upvote").addEventListener("click", upVote);
-  document.getElementById("downvote").addEventListener("click", downVote);
-  id = $("#comment_id").val();
+function init() {
+  $('.upvoter').bind('click', upVote);
+  $('.downvoter').bind('click', downVote);
 }
 
 function upVote() {
+  var id = event.currentTarget.parentElement.children.comment_id.value;
   var request = $.ajax({
     method: "GET",
     url: "/v1/upvote",
@@ -15,12 +14,14 @@ function upVote() {
   });
 
   request.done(function(data) {
-    document.getElementById("upvote").textContent = data.upvotes;
-    document.getElementById("downvote").textContent = data.downvotes;
+    element = $('.voter').find(':input[value=' + id + ']')
+    element.parent().children()[1].textContent = data.upvotes;
+    element.parent().children()[2].textContent = data.downvotes;
   });
 }
 
 function downVote() {
+  var id = event.currentTarget.parentElement.children.comment_id.value;
   var request = $.ajax({
     method: "GET",
     url: "/v1/downvote",
@@ -28,7 +29,8 @@ function downVote() {
   });
 
   request.done(function(data) {
-    document.getElementById("upvote").textContent = data.upvotes;
-    document.getElementById("downvote").textContent = data.downvotes;
+    element = $('.voter').find(':input[value=' + id + ']')
+    element.parent().children()[1].textContent = data.upvotes;
+    element.parent().children()[2].textContent = data.downvotes;
   });
 }
