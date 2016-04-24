@@ -7,4 +7,11 @@ Rails.application.routes.draw do
   end
 
   resources :admins
+
+  scope module: 'api' do
+    namespace :v1 do
+      get '/upvote/' => 'comment_votes#upvote'
+      get '/downvote/' => 'comment_votes#downvote'
+    end
+  end
 end
