@@ -19,14 +19,15 @@
 
   <h3>Comments for this Politician</h3>
   <div class="row">
-    <p class="small-1 columns">User</p>
+    <p class="small-2 columns">User</p>
     <p class="comments small-5 columns">Comment</p>
     <p class="small-1 columns end">Rating</p>
+    <p class="small-1 columns end">Vote</p>
   </div>
 
   <% @comments.each do |comment| %>
     <div class="row" id="comment-id-<%= comment.id %>">
-      <p class="small-1 columns"><%= comment.user.full_name %></p>
+      <p class="small-2 columns"><%= comment.user.full_name %></p>
       <div class="comments small-5 columns">
         <% if comment.body != '' %>
           <%= comment.body %>
@@ -35,13 +36,13 @@
         <% end %>
       </div>
       <p class="small-1 columns"><%= comment.rating %></p>
-      <div class="voter">
+      <div class="small-1 columns voter end">
         <%= hidden_field(:comment, :id, value: comment.id) %>
-        <div class="small-1 columns arrow-up upvoter" id="upvote">
+        <div class="arrow-up upvoter" id="upvote">
           <%= image_tag 'up_arrow.png' %>
         </div>
         <p><%= @downvotes %></p>
-        <div class="small-1 columns arrow-down downvoter" id="downvote">
+        <div class="arrow-down downvoter" id="downvote">
           <%= image_tag 'down_arrow.png' %>
         </div>
         <p><%= @downvotes %></p>
@@ -51,12 +52,14 @@
         <% if comment.comment_owner?(current_user) || current_user.role == 'admin' %>
           <div class="small-1 columns">
             <%= link_to 'Edit Comment',
-            edit_politician_comment_path(@politician, comment), class: 'button' %>
+              edit_politician_comment_path(@politician, comment), class: 'button',
+              id: "edit-comment-#{comment.id}"%>
           </div>
           <div class="small-1 columns end">
             <%= link_to "Delete Comment",
-            politician_comment_path(@politician, comment), class: 'button',
-            method: :delete, data: {confirm: "Definitely delete this comment?"} %>
+              politician_comment_path(@politician, comment), class: 'button',
+              method: :delete, data: {confirm: "Definitely delete this comment?"},
+              id: "delete-comment-#{comment.id}" %>
           </div>
         <% end %>
       <% end %>

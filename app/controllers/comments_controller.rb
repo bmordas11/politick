@@ -11,29 +11,26 @@ class CommentsController < ApplicationController
     @comment.rating = @comment.rating.to_i
     @comment.user = current_user
 
-    # respond_to do |format|
     if @comment.save
       flash[:success] = "Successfully added comment."
-      # format.html { redirect_to [@parent, @child],
-      #   notice: 'Child was successfully created.' }
     else
       flash[:warning] = @comment.errors.full_messages.join(', ')
       flash[:warning] += ". Comment not created."
     end
     redirect_to @politician
-    # end
   end
 
   def edit
     @politician = Politician.find(params[:politician_id])
     @comment = Comment.find(params[:id])
+    @editing_comment = true
   end
 
   def update
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       redirect_to politician_path(@comment.politician)
-      flash[:success] = "Comment Updated!"
+      flash[:success] = "Comment Successfully Updated."
     else
       flash[:warning] = @comment.errors.full_messages.join(', ')
       flash[:warning] += ". Comment Not Updated!"
