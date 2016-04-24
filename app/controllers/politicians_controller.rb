@@ -19,6 +19,7 @@ class PoliticiansController < ApplicationController
     @politician = Politician.find(params[:id])
     @comments = @politician.comments
     @comment = Comment.new
+    @editing_comment = false
   end
 
   def new

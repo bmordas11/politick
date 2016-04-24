@@ -51,12 +51,14 @@
         <% if comment.comment_owner?(current_user) || current_user.role == 'admin' %>
           <div class="small-1 columns">
             <%= link_to 'Edit Comment',
-            edit_politician_comment_path(@politician, comment), class: 'button' %>
+              edit_politician_comment_path(@politician, comment), class: 'button',
+              id: "edit-comment-#{comment.id}"%>
           </div>
           <div class="small-1 columns end">
             <%= link_to "Delete Comment",
-            politician_comment_path(@politician, comment), class: 'button',
-            method: :delete, data: {confirm: "Definitely delete this comment?"} %>
+              politician_comment_path(@politician, comment), class: 'button',
+              method: :delete, data: {confirm: "Definitely delete this comment?"},
+              id: "delete-comment-#{comment.id}" %>
           </div>
         <% end %>
       <% end %>

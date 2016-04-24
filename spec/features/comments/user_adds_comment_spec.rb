@@ -5,7 +5,6 @@ feature 'user comments on a politician' do
 
   scenario 'successfully adds a comment' do
     visit root_path
-
     click_link 'Sign In'
     fill_in 'Email', with: comment.user.email
     fill_in 'Password', with: comment.user.password

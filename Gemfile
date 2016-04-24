@@ -17,9 +17,12 @@ gem 'puma'
 gem 'fog'
 gem 'carrierwave'
 gem 'foundation-rails'
+gem 'foundation_rails_helper'
 gem 'rack-timeout'
 gem 'devise'
 gem 'pg_search'
+gem 'will_paginate'
+gem 'will_paginate-foundation'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -31,6 +34,7 @@ group :development, :test do
 
   gem 'quiet_assets'
   gem 'pry-rails'
+  gem 'database_cleaner'
 end
 
 group :test do
