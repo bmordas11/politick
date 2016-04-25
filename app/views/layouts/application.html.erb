@@ -15,11 +15,13 @@
   </head>
 
   <body>
-    <div class="flash-headers">
-      <% flash.each do |name, msg| %>
-      <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
-      <% end %>
-    </div>
+    <% if flash.present? %>
+      <div class="flash-headers" style="padding: 10px;">
+        <% flash.each do |name, msg| %>
+          <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
+        <% end %>
+      </div>
+    <% end %>
 
     <div class="top-bar">
       <div class="top-bar-left">

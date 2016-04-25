@@ -6,7 +6,7 @@ module Api::V1
       user = current_user.id
       found_vote = CommentVote.find_by(user: user, comment: params[:comment_id])
 
-      if found_vote == nil
+      if found_vote.nil?
         create_vote(params[:comment_id], user, true)
         render json: CommentVote.calculate_votes(params[:comment_id])
         return
@@ -20,7 +20,7 @@ module Api::V1
       user = current_user.id
       found_vote = CommentVote.find_by(user: user, comment: params[:comment_id])
 
-      if found_vote == nil
+      if found_vote.nil?
         create_vote(params[:comment_id], user, false)
         render json: CommentVote.calculate_votes(params[:comment_id])
         return
@@ -49,11 +49,11 @@ module Api::V1
     private
 
     def current_user
-      warden.user
+      env['warden'].user
     end
 
-    def warden
-      env['warden']
-    end
+    # def warden
+    #   env['warden']
+    # end
   end
 end
