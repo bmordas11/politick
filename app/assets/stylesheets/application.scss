@@ -9,8 +9,8 @@
 @import 'mixins';
 
 #bottom-bar {
-  height: 80px;
   background-color: $light-gray;
+  height: 80px;
   margin-bottom: 0;
 }
 
@@ -19,12 +19,9 @@
 }
 
 .row {
+  background-color: $custom-color5;
   margin-bottom: 1em;
   margin-top: 1em;
-}
-
-.row .votes {
-  background-color: $custom-color5;
 }
 
 .flash-headers, .alert-warning {

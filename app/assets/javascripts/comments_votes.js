@@ -14,7 +14,7 @@ function upVote() {
   });
 
   request.done(function(data) {
-    element = $('.voter').find(':input[value=' + id + ']');
+    var element = $('.voter').find(':input[value=' + id + ']');
     element.siblings()[0].textContent = data.upvotes;
     element.siblings()[1].textContent = data.downvotes;
   });
@@ -29,7 +29,7 @@ function downVote() {
   });
 
   request.done(function(data) {
-    element = $('.voter').find(':input[value=' + id + ']');
+    var element = $('.voter').find(':input[value=' + id + ']');
     element.siblings()[0].textContent = data.upvotes;
     element.siblings()[1].textContent = data.downvotes;
   });
