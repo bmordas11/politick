@@ -15,8 +15,8 @@ function upVote() {
 
   request.done(function(data) {
     element = $('.voter').find(':input[value=' + id + ']');
-    element.parent().children()[1].textContent = data.upvotes;
-    element.parent().children()[2].textContent = data.downvotes;
+    element.siblings()[0].textContent = data.upvotes;
+    element.siblings()[1].textContent = data.downvotes;
   });
 }
 
@@ -30,7 +30,7 @@ function downVote() {
 
   request.done(function(data) {
     element = $('.voter').find(':input[value=' + id + ']');
-    element.parent().children()[1].textContent = data.upvotes;
-    element.parent().children()[2].textContent = data.downvotes;
+    element.siblings()[0].textContent = data.upvotes;
+    element.siblings()[1].textContent = data.downvotes;
   });
 }
