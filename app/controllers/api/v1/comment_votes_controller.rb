@@ -51,9 +51,5 @@ module Api::V1
     def current_user
       env['warden'].user
     end
-
-    # def warden
-    #   env['warden']
-    # end
   end
 end
