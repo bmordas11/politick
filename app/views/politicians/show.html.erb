@@ -22,10 +22,12 @@
     <p class="small-2 columns">User</p>
     <p class="comments small-5 columns">Comment</p>
     <p class="small-1 columns end">Rating</p>
-    <p class="small-1 columns end">Votes</p>
+    <p class="small-2 columns end" style="padding-left: 4%;">
+      Votes
+    </p>
   </div>
 
-  <% @comments.each do |comment| %>
+  <% @comments.each_with_index do |comment, index| %>
     <div class="row" id="comment-id-<%= comment.id %>">
       <p class="small-2 columns"><%= comment.user.full_name %></p>
       <div class="comments small-5 columns">
@@ -46,20 +48,24 @@
           <%= image_tag 'down_arrow.png' %>
         </div>
       </div>
-      <div class="small-1 columns end">
-        <%= @upvotes %>
-        <%= @downvotes %>
+      <div class="small-1 columns end vote-numbers">
+        <p class="upper-<%= comment.id %>" style="position: relative; top: 0; left: 0;">
+          <%= @upvotes[index] %>
+        </p>
+        <p class="downer-<%= comment.id %>" style="position: relative; top: 0; left: 0;">
+          <%= @downvotes[index] %>
+        </p>
       </div>
 
       <% if !(current_user.nil?) %>
         <% if comment.comment_owner?(current_user) || current_user.role == 'admin' %>
           <div class="small-1 columns">
-            <%= link_to 'Edit Comment',
+            <%= link_to 'Edit',
               edit_politician_comment_path(@politician, comment), class: 'button',
               id: "edit-comment-#{comment.id}"%>
           </div>
           <div class="small-1 columns end">
-            <%= link_to "Delete Comment",
+            <%= link_to 'Delete',
               politician_comment_path(@politician, comment), class: 'button',
               method: :delete, data: {confirm: "Definitely delete this comment?"},
               id: "delete-comment-#{comment.id}" %>
