@@ -14,9 +14,9 @@ function upVote() {
   });
 
   request.done(function(data) {
-    var element = $('.voter').find(':input[value=' + id + ']');
-    element.siblings()[0].textContent = data.upvotes;
-    element.siblings()[1].textContent = data.downvotes;
+    var element = $('.upper-' + id);
+    element[0].textContent = data.upvotes;
+    element.siblings()[0].textContent = data.downvotes;
   });
 }
 
@@ -29,8 +29,8 @@ function downVote() {
   });
 
   request.done(function(data) {
-    var element = $('.voter').find(':input[value=' + id + ']');
+    var element = $('.downer-' + id);
     element.siblings()[0].textContent = data.upvotes;
-    element.siblings()[1].textContent = data.downvotes;
+    element[0].textContent = data.downvotes;
   });
 }

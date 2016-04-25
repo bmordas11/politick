@@ -20,8 +20,12 @@ class PoliticiansController < ApplicationController
     @comments = @politician.comments
     @comment = Comment.new
     @editing_comment = false
-    @upvotes = CommentVote.where(user_vote: true, comment: @comment).count
-    @downvotes = CommentVote.where(user_vote: false, comment: @comment).count
+    @upvotes = []
+    @downvotes = []
+    @comments.each do |comment|
+      @upvotes << CommentVote.where(user_vote: true, comment: comment).count
+      @downvotes << CommentVote.where(user_vote: false, comment: comment).count
+    end
   end
 
   def new
