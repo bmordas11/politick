@@ -1,22 +1,22 @@
 <div class="body-background">
-  <h4 class='form-title'>New Politician Page</h4>
+  <h4 style="padding-left: 25%; padding-bottom: 1%;">New Politician Page</h4>
   <div="row">
-    <div class="medium-8 medium-centered columns">
+    <div class="small-7 small-centered columns">
       <%= form_for Politician.new do |f| %>
         <%= f.label :first_name, 'First Name' %>
-        <%= f.text_field :first_name, id: "First Name",  style: 'display: block;' %>
+        <%= f.text_field :first_name, id: "First Name", label: false, style: 'display: block;' %>
         <%= f.label :last_name, 'Last Name' %>
-        <%= f.text_field :last_name, id: "Last Name",  style: 'display: block;' %>
+        <%= f.text_field :last_name, id: "Last Name", label: false, style: 'display: block;' %>
         <%= f.label :political_party, 'Political Party' %>
-        <%= f.text_field :political_party, id: "Political Party", style: 'display: block;' %>
+        <%= f.text_field :political_party, id: "Political Party", label: false, style: 'display: block;' %>
         <%= f.label :place_of_birth, 'Place of Birth' %>
-        <%= f.text_field :place_of_birth, id: "Place of Birth", style: 'display: block;' %>
+        <%= f.text_field :place_of_birth, id: "Place of Birth", label: false, style: 'display: block;' %>
         <%= f.label :birthday, 'Birthday' %>
-        <%= f.text_field :birthday, id: "Birthday", style: 'display: block;' %>
+        <%= f.text_field :birthday, id: "Birthday", label: false, style: 'display: block;' %>
         <%= f.label :stance, 'Stance' %>
-        <%= f.text_field :stance, value: "", id: "Stance", style: 'display: block;' %>
+        <%= f.text_field :stance, value: "", id: "Stance", label: false, style: 'display: block;' %>
 
-        <%= f.submit "Add Politician" %>
+        <%= f.submit "Add Politician", style: "background-color: #c99e10;" %>
       <% end %>
     </div>
   </div>

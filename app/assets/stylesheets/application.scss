@@ -1,16 +1,30 @@
 /*
 
- *= require_tree
- *= require_self
- *= require foundation_and_overrides
+*= require_tree
+*= require_self
+*= require foundation_and_overrides
 
- */
+*/
 @import "settings";
 @import 'mixins';
+
+#bottom-bar {
+  height: 80px;
+  background-color: $light-gray;
+  margin-bottom: 0;
+}
+
+.top-bar-left {
+  padding-top: 15px;
+}
 
 .row {
   margin-bottom: 1em;
   margin-top: 1em;
+}
+
+.row .votes {
+  background-color: $custom-color5;
 }
 
 .flash-headers, .alert-warning {
@@ -23,27 +37,17 @@
   color: $white;
 }
 
-#bottom-bar {
-  height: 80px;
-  background-color: $light-gray;
-  margin-bottom: 0;
-}
-
 .menu-text {
   text-align: center;
 }
 
-.form-inputs, .sign-ups, .sign-extras {
-  padding-left: 200px;
+.callout {
+  display: table;
+  margin: 0 auto;
 }
 
-.top-bar-left {
-  padding-top: 15px;
-}
-
-.form-title {
-  padding-left: 200px;
-  padding-bottom: 20px;
+.button {
+  @include rounded();
 }
 
 .politician-info {
@@ -58,12 +62,4 @@
   background-color: $custom-color4;
   padding-top: 10px;
   padding-bottom: 10px;
-}
-
-.button {
-  @include rounded();
-}
-
-.row .votes {
-  background-color: $custom-color5;
 }

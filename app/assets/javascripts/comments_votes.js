@@ -1,8 +1,8 @@
 window.onload = init();
 
 function init() {
-  $('.upvoter').bind('click', upVote);
-  $('.downvoter').bind('click', downVote);
+  $('.arrow-up').bind('click', upVote);
+  $('.arrow-down').bind('click', downVote);
 }
 
 function upVote() {
@@ -14,7 +14,7 @@ function upVote() {
   });
 
   request.done(function(data) {
-    element = $('.voter').find(':input[value=' + id + ']')
+    element = $('.voter').find(':input[value=' + id + ']');
     element.parent().children()[1].textContent = data.upvotes;
     element.parent().children()[2].textContent = data.downvotes;
   });
@@ -29,7 +29,7 @@ function downVote() {
   });
 
   request.done(function(data) {
-    element = $('.voter').find(':input[value=' + id + ']')
+    element = $('.voter').find(':input[value=' + id + ']');
     element.parent().children()[1].textContent = data.upvotes;
     element.parent().children()[2].textContent = data.downvotes;
   });

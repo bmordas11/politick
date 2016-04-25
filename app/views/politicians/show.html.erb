@@ -22,7 +22,7 @@
     <p class="small-2 columns">User</p>
     <p class="comments small-5 columns">Comment</p>
     <p class="small-1 columns end">Rating</p>
-    <p class="small-1 columns end">Vote</p>
+    <p class="small-1 columns end">Votes</p>
   </div>
 
   <% @comments.each do |comment| %>
@@ -36,16 +36,19 @@
         <% end %>
       </div>
       <p class="small-1 columns"><%= comment.rating %></p>
-      <div class="small-1 columns voter end">
+
+      <div class="small-2 columns voter end">
         <%= hidden_field(:comment, :id, value: comment.id) %>
-        <div class="arrow-up upvoter" id="upvote">
+        <div class="arrow-up" id="upvote">
           <%= image_tag 'up_arrow.png' %>
         </div>
-        <p><%= @downvotes %></p>
-        <div class="arrow-down downvoter" id="downvote">
+        <div class="arrow-down" id="downvote">
           <%= image_tag 'down_arrow.png' %>
         </div>
-        <p><%= @downvotes %></p>
+      </div>
+      <div class="small-1 columns end">
+        <%= @upvotes %>
+        <%= @downvotes %>
       </div>
 
       <% if !(current_user.nil?) %>
