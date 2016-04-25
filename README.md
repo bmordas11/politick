@@ -21,10 +21,12 @@ Things you may want to cover:
 
 * Database initialization
 
-* How to run the test suite
+* How to run the test suite:
+    - bundle (to make sure you have the correct gems)
+    - bundle exec rake (this command will run the test suite)
 
-* Services (pg_search gem search function, job queues, cache servers)
+* Services (pg_search gem search function)
 
 * Deployment instructions:
-    - Production: (git push heroku master)
-    - Development: (rails local server)
+    - Production: git push heroku master
+    - Development: bundle exec rails s (local server 3000)
