@@ -1,10 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
 
-  def new
-    @politician = Politician.new
-  end
-
   def create
     @politician = Politician.find(params[:politician_id])
     @comment = @politician.comments.new(comment_params)
@@ -21,16 +17,17 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @politician = Politician.find(params[:politician_id])
     @comment = Comment.find(params[:id])
+    @politician = @comment.politician
     @editing_comment = true
   end
 
   def update
     @comment = Comment.find(params[:id])
+    @politician = @comment.politician
     if @comment.update(comment_params)
-      redirect_to politician_path(@comment.politician)
       flash[:success] = "Comment Successfully Updated."
+      redirect_to politician_path(@comment.politician)
     else
       flash[:warning] = @comment.errors.full_messages.join(', ')
       flash[:warning] += ". Comment Not Updated!"
@@ -41,11 +38,7 @@ class CommentsController < ApplicationController
   def destroy
     @politician = Politician.find(params[:politician_id])
     comment = Comment.find(params[:id])
-    if comment.destroy
-      flash[:success] = "Comment has been deleted."
-    else
-      flash[:warning] = "Comment could not be deleted."
-    end
+    flash[:success] = "Comment has been deleted." if comment.destroy
     redirect_to politician_path(@politician)
   end
 

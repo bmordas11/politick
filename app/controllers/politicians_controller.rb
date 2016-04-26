@@ -7,8 +7,7 @@ class PoliticiansController < ApplicationController
     if params[:query] == '' || params[:query].nil?
       @politicians = Politician.order(first_name: :asc)
     elsif params[:query].present?
-      @politicians =
-        Politician.search("%" + params[:query] + "%")
+      @politicians = Politician.search("%" + params[:query] + "%")
       @politicians.uniq! { |politician| politician.id }
     end
 
@@ -38,11 +37,12 @@ class PoliticiansController < ApplicationController
     @politician = Politician.new(politician_params)
     if @politician.save
       flash[:sucess] = "Successfully added politician."
+      redirect_to @politician
     else
       flash[:warning] = @politician.errors.full_messages.join(', ')
       flash[:warning] += ". Politician not added."
+      render :new, object: @politician
     end
-    redirect_to @politician
   end
 
   protected
