@@ -8,7 +8,7 @@ class PoliticiansController < ApplicationController
       @politicians = Politician.order(first_name: :asc)
     elsif params[:query].present?
       @politicians =
-        Politician.search("%" + params[:query] + "%").order(first_name: :asc)
+        Politician.search("%" + params[:query] + "%")
       @politicians.uniq! { |politician| politician.id }
     end
 
