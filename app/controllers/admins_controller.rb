@@ -11,12 +11,6 @@ class AdminsController < ApplicationController
     @admin = Admin.find(params[:id])
   end
 
-  def new
-  end
-
-  def create
-  end
-
   protected
 
   def authorize_user

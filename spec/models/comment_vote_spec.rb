@@ -11,6 +11,20 @@ end
 describe ".calculate_votes" do
   it 'correctly calculates the votes given comment_id' do
     first_vote = FactoryGirl.create(:comment_vote, user_vote: true)
+    second_vote = FactoryGirl.create(
+      :comment_vote,
+      comment: first_vote.comment,
+      user_vote: false
+    )
+    FactoryGirl.create(
+      :comment_vote,
+      comment: first_vote.comment,
+      user_vote: true
+    )
+    expect(first_vote.comment.id).to eq second_vote.comment.id
+    vote_totals = CommentVote.calculate_votes(first_vote.comment.id)
+    expect(vote_totals[:upvotes]).to eq 2
+    expect(vote_totals[:downvotes]).to eq 1
     expect(first_vote.comment.commentVotes.first.user_vote).to be true
   end
 end
