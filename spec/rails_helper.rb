@@ -14,10 +14,10 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   config.before :each do
-    if Capybara.current_driver = :rack_test
+    if Capybara.current_driver == :rack_test
       DatabaseCleaner.strategy = :transaction
     else
       DatabaseCleaner.strategy = :truncation

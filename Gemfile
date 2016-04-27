@@ -25,6 +25,7 @@ gem 'will_paginate-foundation'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'poltergeist'
   gem 'factory_girl_rails'
   gem 'valid_attribute'
   gem 'shoulda'
