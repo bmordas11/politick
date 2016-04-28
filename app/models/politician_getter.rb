@@ -5,7 +5,7 @@ class PoliticianGetter < ActiveRecord::Base
   require 'pry'
   require 'csv'
 
-  def self.scrape_politician_data()
+  def self.scrape_politician_data
     url = "http://www.politifact.com/personalities"
     parsed_page = Nokogiri::HTML(open(url))
     links = parsed_page.css("a.link")
@@ -21,12 +21,12 @@ class PoliticianGetter < ActiveRecord::Base
     all_links
   end
 
-  def self.scraper()
+  def self.scraper
     counter = 0
     puts "Opening: http://www.politifact.com/personalities/"
 
     puts "Scraping politician links"
-    politician_links = PoliticianGetter.scrape_politician_data()
+    politician_links = PoliticianGetter.scrape_politician_data
     puts "Stashing #{politician_links.length} links into array"
 
     # save gathered info to a csv

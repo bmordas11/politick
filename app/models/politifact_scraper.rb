@@ -1,5 +1,4 @@
 class PolitifactScraper < ActiveRecord::Base
-
   def self.scrape(name_list)
     counter = 0
     name_list.each do |politician|
@@ -40,18 +39,20 @@ class PolitifactScraper < ActiveRecord::Base
     politician = PoliticianScraped.new
 
     politician.url = url
-    politician.first_name = parsed_page.children[1].children[1].children[1]
-      .children.text.split(' ')[0]
-    politician.last_name = parsed_page.children[1].children[1].children[1]
-      .children.text.split(' ')[1].gsub("'s", "")
+    politician.first_name = parsed_page.children[1].children[1].children[1].
+                            children.text.split(' ')[0]
+    politician.last_name = parsed_page.children[1].children[1].children[1].
+                           children.text.split(' ')[1].gsub("'s", "")
     politician.political_party =
-      (parsed_page.children - parsed_page.children.children)[1].children[3]
-      .children[3].children[1].children[3].children[5].children[1].children[1]
-      .children[3].children[3].children[1].children[3].children.text.split(' ')[0]
+      (parsed_page.children - parsed_page.children.children)[1].children[3].
+      children[3].children[1].children[3].children[5].children[1].children[1].
+      children[3].children[3].children[1].children[3].
+      children.text.split(' ')[0]
 
-    checker = politician.stance = (parsed_page.children - parsed_page.children.children)[1]
-      .children[3].children[3].children[1].children[3].children[5].children[1]
-      .children[1].children[3].children[3].children[1].children[5]
+    checker = (parsed_page.children - parsed_page.children.children)[1].
+              children[3].children[3].children[1].children[3].children[5].
+              children[1].children[1].children[3].children[3].children[1].
+              children[5]
     unless checker.nil?
       politician.stance = checker.children[0].text.chomp
     end

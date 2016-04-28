@@ -22,7 +22,7 @@ Politician.create(
   birthday: '1947-10-26'
 )
 
-PoliticianGetter.scraper()
+PoliticianGetter.scraper
 
 politician_name_list = []
 CSV.foreach("politician_names.csv") do |row|
@@ -39,7 +39,7 @@ BLACKLIST = [
   "my-city-bikes",
   "60-plus-association",
   "18-percent-american-public"
-]
+].map!(&:freeze).freeze
 politician_name_list -= BLACKLIST
 politician_name_list.uniq!
 PolitifactScraper.scrape(politician_name_list)
@@ -47,7 +47,7 @@ PolitifactScraper.scrape(politician_name_list)
 CSV.foreach("politician_info.csv") do |row|
   new_politician = Politician.new(first_name: row[0], last_name: row[1])
   new_politician.political_party = row[2]
-  if new_politician.stance != nil
+  if !new_politician.stance.nil?
     new_politician.stance = row[4]
   else
     new_politician.stance = "(No stance given)"
