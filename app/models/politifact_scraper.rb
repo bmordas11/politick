@@ -6,7 +6,6 @@ class PolitifactScraper < ActiveRecord::Base
 
       # Open the specified product page, throw it into a Nokogiri object
       puts "Opening: http://www.politifact.com/personalities/#{politician}/"
-
       # Politician is the url
       puts "Scraping '#{politician}'"
       politicians_info << PolitifactScraper.scrape_politician_data(politician)
