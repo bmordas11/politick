@@ -2,7 +2,6 @@ class PoliticianGetter < ActiveRecord::Base
   # Each .csv of politicians is saved to politician_names.csv
   require 'nokogiri'
   require 'open-uri'
-  require 'pry'
   require 'csv'
 
   def self.scrape_politician_data
