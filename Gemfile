@@ -22,6 +22,7 @@ gem 'devise'
 gem 'pg_search'
 gem 'will_paginate'
 gem 'will_paginate-foundation'
+gem 'vcr'
 
 group :development, :test do
   gem 'rspec-rails'
