@@ -22,7 +22,7 @@ Politician.create(
   birthday: '1947-10-26'
 )
 
-PoliticianGetter.scraper
+# PoliticianGetter.scraper
 
 politician_name_list = []
 CSV.foreach("politician_names.csv") do |row|
@@ -30,6 +30,7 @@ CSV.foreach("politician_names.csv") do |row|
 end
 politician_name_list.map! { |politician| politician[0] }
 BLACKLIST = [
+  "jeff-dewit",
   "michael-m-crow",
   "nextgen-climate",
   "cleantv",
