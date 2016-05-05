@@ -5,6 +5,7 @@ feature 'user signs up' do
   scenario 'specifying valid and require information' do
     visit root_path
     click_link 'Sign Up'
+    save_and_open_page
     fill_in 'First Name', with: 'Jon'
     fill_in 'Last Name', with: 'Smith'
     fill_in 'Email', with: 'user@example.com'

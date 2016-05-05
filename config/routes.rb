@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/upvote/' => 'comment_votes#upvote'
       get '/downvote/' => 'comment_votes#downvote'
+      post '/addComment/' => 'comment#add_comment'
     end
   end
 end

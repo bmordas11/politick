@@ -1,4 +1,5 @@
 <div class="column small-12">
+  <%= hidden_field( :politician, :id, :value => @politician.id ) %>
   <h1><%= @politician.full_name %> Show Page</h1>
   <div class="row">
     <div class="small-2 columns politician-info">
@@ -27,53 +28,56 @@
     </p>
   </div>
 
-  <% @comments.each_with_index do |comment, index| %>
-    <div class="row" id="comment-id-<%= comment.id %>">
-      <p class="small-2 columns"><%= comment.user.full_name %></p>
-      <div class="comments small-5 columns">
-        <% if comment.body != '' %>
-          <%= comment.body %>
-        <% else %>
-          <p>(No comment)</p>
+  <div class="all-comments">
+    <% @comments.each_with_index do |comment, index| %>
+      <div class="row" id="comment-id-<%= comment.id %>">
+        <p class="small-2 columns"><%= comment.user.full_name %></p>
+        <div class="comments small-5 columns">
+          <% if comment.body != '' %>
+            <%= comment.body %>
+          <% else %>
+            <p>(No comment)</p>
+          <% end %>
+        </div>
+        <p class="small-1 columns"><%= comment.rating %></p>
+
+        <div class="small-1 columns voter end">
+          <%= hidden_field(:comment, :id, value: comment.id) %>
+          <div class="arrow-up" id="upvote">
+            <%= image_tag 'up_arrow.png' %>
+          </div>
+          <div class="arrow-down" id="downvote">
+            <%= image_tag 'down_arrow.png' %>
+          </div>
+        </div>
+        <div class="small-1 columns end vote-numbers">
+          <p class="upper-<%= comment.id %>" style="position: relative; top: 0; left: 0;">
+            <%= @upvotes[index] %>
+          </p>
+          <p class="downer-<%= comment.id %>" style="position: relative; top: 0; left: 0;">
+            <%= @downvotes[index] %>
+          </p>
+        </div>
+
+        <% if !(current_user.nil?) %>
+          <% if comment.comment_owner?(current_user) || current_user.role == 'admin' %>
+            <div class="small-1 columns">
+              <%= link_to 'Edit',
+                edit_politician_comment_path(@politician, comment), class: 'button',
+                id: "edit-comment-#{comment.id}"%>
+            </div>
+            <div class="small-1 columns end" style="padding-right: 2%;">
+              <%= link_to 'Delete',
+                politician_comment_path(@politician, comment), class: 'button',
+                method: :delete, data: {confirm: "Definitely delete this comment?"},
+                id: "delete-comment-#{comment.id}" %>
+            </div>
+          <% end %>
         <% end %>
       </div>
-      <p class="small-1 columns"><%= comment.rating %></p>
-
-      <div class="small-1 columns voter end">
-        <%= hidden_field(:comment, :id, value: comment.id) %>
-        <div class="arrow-up" id="upvote">
-          <%= image_tag 'up_arrow.png' %>
-        </div>
-        <div class="arrow-down" id="downvote">
-          <%= image_tag 'down_arrow.png' %>
-        </div>
-      </div>
-      <div class="small-1 columns end vote-numbers">
-        <p class="upper-<%= comment.id %>" style="position: relative; top: 0; left: 0;">
-          <%= @upvotes[index] %>
-        </p>
-        <p class="downer-<%= comment.id %>" style="position: relative; top: 0; left: 0;">
-          <%= @downvotes[index] %>
-        </p>
-      </div>
-
-      <% if !(current_user.nil?) %>
-        <% if comment.comment_owner?(current_user) || current_user.role == 'admin' %>
-          <div class="small-1 columns">
-            <%= link_to 'Edit',
-              edit_politician_comment_path(@politician, comment), class: 'button',
-              id: "edit-comment-#{comment.id}"%>
-          </div>
-          <div class="small-1 columns end" style="padding-right: 2%;">
-            <%= link_to 'Delete',
-              politician_comment_path(@politician, comment), class: 'button',
-              method: :delete, data: {confirm: "Definitely delete this comment?"},
-              id: "delete-comment-#{comment.id}" %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
   <%= render partial: 'new_comment_form', object: @comment %>
   <%= javascript_include_tag "comments_votes.js" %>
+  <%= javascript_include_tag "comments.js" %>
 </div>

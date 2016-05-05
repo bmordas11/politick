@@ -18,7 +18,7 @@
   padding-top: 15px;
 }
 
-.row {
+.row-padding {
   margin-bottom: 1em;
   margin-top: 1em;
 }
@@ -62,7 +62,9 @@
 }
 
 .sign-up-screen {
-  background: image-url('candidates_image.jpg') no-repeat;
+  background: image-url('candidates_image.jpg') no-repeat top center;
   background-size: cover;
-  height: 70vh;
+  height: 100vh;
+  padding-top: 40px;
+  color: $white;
 }
