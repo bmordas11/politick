@@ -62,9 +62,9 @@
 }
 
 .sign-up-screen {
-  background: image-url('candidates_image.jpg') no-repeat top center;
+  background: image-url("candidates_image.jpg") no-repeat top center;
   background-size: cover;
+  color: $white;
   height: 100vh;
   padding-top: 40px;
-  color: $white;
 }

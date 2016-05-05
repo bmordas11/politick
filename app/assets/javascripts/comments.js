@@ -8,12 +8,12 @@ function putNewComment() {
   $( '#submit-comment' ).click(function(event) {
     event.preventDefault();
     var request = $.ajax({
-      method: "POST",
+      method: 'POST',
       url: "/v1/addComment",
       data: {
         body: $('#comment_body').val(),
         rating: getCheckedBox(),
-        politician_id: $('#politician_id').val()
+        politicianId: $('#politician_id').val()
       }
     });
 
@@ -27,13 +27,13 @@ function putNewComment() {
 
 function getCheckedBox()
 {
-  array = jQuery( ":radio" );
+  var array = jQuery( ':radio' );
   var matches = jQuery.grep(array, function(radio) {
     return(radio.checked === true);
   });
   if (matches.length)
   {
-    value = matches[0].value;
+    var value = matches[0].value;
     return value;
   }else{
     return false;
