@@ -4,29 +4,29 @@ module Api::V1
 
     def upvote
       user = current_user.id
-      found_vote = CommentVote.find_by(user: user, comment: params[:comment_id])
+      found_vote = CommentVote.find_by(user: user, comment: params[:commentId])
 
       if found_vote.nil?
-        create_vote(params[:comment_id], user, true)
-        render json: CommentVote.calculate_votes(params[:comment_id])
+        create_vote(params[:commentId], user, true)
+        render json: CommentVote.calculate_votes(params[:commentId])
         return
       else
         flip_vote(found_vote)
-        render json: CommentVote.calculate_votes(params[:comment_id])
+        render json: CommentVote.calculate_votes(params[:commentId])
       end
     end
 
     def downvote
       user = current_user.id
-      found_vote = CommentVote.find_by(user: user, comment: params[:comment_id])
+      found_vote = CommentVote.find_by(user: user, comment: params[:commentId])
 
       if found_vote.nil?
-        create_vote(params[:comment_id], user, false)
-        render json: CommentVote.calculate_votes(params[:comment_id])
+        create_vote(params[:commentId], user, false)
+        render json: CommentVote.calculate_votes(params[:commentId])
         return
       else
         flip_vote(found_vote)
-        render json: CommentVote.calculate_votes(params[:comment_id])
+        render json: CommentVote.calculate_votes(params[:commentId])
       end
     end
 
