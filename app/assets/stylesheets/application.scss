@@ -5,6 +5,7 @@
 *= require foundation_and_overrides
 
 */
+
 @import "settings";
 @import 'mixins';
 
@@ -12,10 +13,6 @@
   background-color: $light-gray;
   height: 80px;
   margin-bottom: 0;
-}
-
-.top-bar-left {
-  padding-top: 15px;
 }
 
 .row-padding {
@@ -33,10 +30,6 @@
   color: $white;
 }
 
-.menu-text {
-  text-align: center;
-}
-
 .callout {
   display: table;
   margin: 0 auto;
@@ -51,6 +44,7 @@
   @include box-shadow(1px, 1px, 1px, $light-gray);
   background-color: $custom-color6;
   padding: 10px;
+  margin: 5px;
 }
 
 .comments {

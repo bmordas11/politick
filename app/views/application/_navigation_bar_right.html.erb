@@ -11,7 +11,9 @@
 <% end %>
 <li class="menu-text">
   <%= form_tag politicians_path, method: :get do %>
-    <%= text_field_tag :query, params[:query], placeholder: "Search Politicians" %>
-    <%= submit_tag "Search" %>
+    <div style='float: left'>
+      <%= text_field_tag :query, params[:query], placeholder: "Search Politicians" %>
+    </div>
+    <%= submit_tag "Search", style: 'margin-top: 1px; padding: 9px;' %>
   <% end %>
 </li>
