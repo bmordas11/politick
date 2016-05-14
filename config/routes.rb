@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'politicians#index'
+
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
 
   resources :politicians do
     resources :comments, only: [:create, :edit, :update, :destroy]
