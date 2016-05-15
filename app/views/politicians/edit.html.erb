@@ -1,7 +1,7 @@
 <div class='row'>
-  <h2 style="padding-left: 10%; padding-bottom: 1%;">New Politician Page</h2>
+  <h2 style="padding-left: 10%; padding-bottom: 1%;">Update Politician Page</h2>
   <div class="small-7 columns end">
-    <%= form_for Politician.new do |f| %>
+    <%= form_for @politician do |f| %>
       <%= f.label :first_name, 'First Name' %>
       <%= f.text_field :first_name, id: "First Name", label: false,
         value: @politician.first_name %>
@@ -21,7 +21,7 @@
       <%= f.text_area :stance, id: "Stance", label: false,
         value: @politician.stance, style: "padding-bottom: 100px;" %>
 
-      <%= f.submit "Add Politician",
+      <%= f.submit "Update Politician",
         style: "background-color: #c99e10;" %>
     <% end %>
   </div>

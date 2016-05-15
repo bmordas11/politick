@@ -30,6 +30,7 @@ class PoliticiansController < ApplicationController
   end
 
   def new
+    @add_or_update = 'Add'
     @politician = Politician.new
   end
 
@@ -42,6 +43,22 @@ class PoliticiansController < ApplicationController
       flash[:warning] = @politician.errors.full_messages.join(', ')
       flash[:warning] += ". Politician not added."
       render :new, object: @politician
+    end
+  end
+
+  def edit
+    @politician = Politician.find(params[:id])
+  end
+
+  def update
+    @politician = Politician.find(params[:id])
+    if @politician.update_attributes(politician_params)
+      flash[:sucess] = "Successfully updated politician."
+      redirect_to @politician
+    else
+      flash[:warning] = @politician.errors.full_messages.join(', ')
+      flash[:warning] += ". Politician not updated."
+      render :edit, object: @politician
     end
   end
 
