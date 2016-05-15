@@ -27,8 +27,8 @@ function putNewComment() {
 
 function getCheckedBox()
 {
-  var array = jQuery( ':radio' );
-  var matches = jQuery.grep(array, function(radio) {
+  var array = $( ':radio' );
+  var matches = $.grep(array, function(radio) {
     return(radio.checked === true);
   });
   if (matches.length)
