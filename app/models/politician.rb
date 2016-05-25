@@ -45,7 +45,7 @@ class Politician < ActiveRecord::Base
       end
       total_rating += user_rating / politicians_comments.count
     end
-    average_rating = total_rating / (users_with_comments.length)
+    average_rating = total_rating / users_with_comments.length
     average_rating = '%.1f' % [(average_rating * 10).round / 10.0]
     average_rating
   end
