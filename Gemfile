@@ -20,8 +20,8 @@ gem 'foundation-rails'
 gem 'foundation_rails_helper'
 gem 'devise'
 gem 'pg_search'
-gem 'will_paginate'
-gem 'will_paginate-foundation'
+gem 'jquery-infinite-pages'
+gem 'kaminari'
 gem 'vcr'
 
 group :development, :test do
