@@ -6,6 +6,9 @@
 
 ## A site to help voters stay informed about elections and politicians
 
+The Heroku link:
+http://politick.herokuapp.com/
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
