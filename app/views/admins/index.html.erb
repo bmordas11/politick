@@ -1,19 +1,43 @@
 <h1>The Admin Page</h1>
 
-<h3>The Admins</h3>
+<div class='row' style='padding-left:20px;'>
+  <h3>Admins</h3>
 
-<% @admins.each do |admin| %>
-  <li><%= admin.full_name %></li>
-<% end %>
+  <% @admins.each do |admin| %>
+    <div class='small-2 columns end'><%= admin.full_name %></div>
+  <% end %>
+</div>
 
-<h3>The Users</h3>
+<div class='row' style='padding: 20px;'>
+  <h3>Users</h3>
+  <% if @users.empty? %>
+    <div class='small-2 columns end'>(No users found)</div>
+  <% else %>
+    <% @users.each do |user| %>
+      <div class='small-2 columns'>
+        <%= link_to user.full_name, edit_user_registration_path(user) %>
+      </div>
+      <div class='small-1 columns end'>
+        <% if current_user.admin? && current_user != user %>
+          <%= button_to "Delete", admin_destroy_user_path(user),
+            method: :delete, data: { confirm: "You sure about this?" },
+            id: "delete-user-#{user.id}"%>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 
-<% @users.each do |user| %>
-  <li><%= link_to user.full_name, edit_user_registration_path(user) %></li>
-<% end %>
+<div class='row' style='padding: 20px;'>
+  <h3>Politicians</h3>
 
-<h3>The Politicians</h3>
-
-<% @politicians.each do |politician| %>
-  <li><%= link_to politician.full_name, politician_path(politician) %></li>
-<% end %>
+  <table border="1" class="small-3">
+    <% @politicians.each do |politician| %>
+      <tr>
+        <td style="text-align: center;">
+          <%= link_to politician.full_name, politician_path(politician) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
