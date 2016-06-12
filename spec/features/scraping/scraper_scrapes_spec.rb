@@ -24,8 +24,8 @@ feature 'scraper works when called' do
     PolitifactScraper.scrape(politician_name_list)
 
     CSV.foreach("politician_info.csv") do |row|
-      politician = Politician.new(stance: row[4])
-      expect(politician.stance).
+      nickie = Politician.new(stance: row[4])
+      expect(nickie.stance).
         to have_content "Nickie J. Antonio is a state representative"
     end
     CSV.open('politician_info.csv', 'w') {}
