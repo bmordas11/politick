@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :comments
-  has_many :commentVotes
+  has_many :comments, dependent: :destroy
+  has_many :commentVotes, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
