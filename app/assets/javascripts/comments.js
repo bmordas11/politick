@@ -21,6 +21,7 @@ function putNewComment() {
       $('.all-comments').append(data);
       $('#comment_body').val('');
       $(this).checked = false;
+      debugger;
       $('.arrow-up').bind('click', upVote);
       $('.arrow-down').bind('click', downVote);
     });
