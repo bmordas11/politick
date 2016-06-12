@@ -40,8 +40,8 @@ class PolitifactScraper < ActiveRecord::Base
     politician.first_name = name.split[0]
     politician.last_name = name.split[1].gsub("'s", "")
 
-    politician.political_party = parsed_page.css("h3.scorecard__title")
-      .text.split[0]
+    politician.political_party = parsed_page.css("h3.scorecard__title").
+                                             text.split[0]
     politician.stance = parsed_page.css("div .scorecard__bio-text").text.strip
 
     politician

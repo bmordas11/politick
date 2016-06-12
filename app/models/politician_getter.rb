@@ -29,7 +29,7 @@ class PoliticianGetter < ActiveRecord::Base
 
     politician_links.each do |link|
       CSV.open("politician_names.csv", "ab") do |csv|
-        csv << [ link ]
+        csv << [link]
         counter += 1
       end
     end
