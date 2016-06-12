@@ -20,21 +20,13 @@ feature 'scraper works when called' do
   end
 
   scenario 'politifact scraper will give data about politicians' do
-    politician_name_list << "hillary-clinton"
     politician_name_list << "nickie-antonio"
     PolitifactScraper.scrape(politician_name_list)
 
-    count = 0
     CSV.foreach("politician_info.csv") do |row|
       politician = Politician.new(stance: row[4])
-      if count == 0
-        expect(politician.stance).to have_content "Hillary Clinton is a
-candidate running for president of the United States in 2016"
-      else
-        expect(politician.stance).
-          to have_content "Nickie J. Antonio is a state representative"
-      end
-      count += 1
+      expect(politician.stance).
+        to have_content "Nickie J. Antonio is a state representative"
     end
     CSV.open('politician_info.csv', 'w') {}
     CSV.open('politician_names.csv', 'w') {}
