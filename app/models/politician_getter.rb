@@ -1,5 +1,4 @@
 class PoliticianGetter < ActiveRecord::Base
-  # Each .csv of politicians is saved to politician_names.csv
   require 'nokogiri'
   require 'open-uri'
   require 'csv'
@@ -28,12 +27,9 @@ class PoliticianGetter < ActiveRecord::Base
     politician_links = PoliticianGetter.scrape_politician_data
     puts "Stashing #{politician_links.length} links into array"
 
-    # save gathered info to a csv
     politician_links.each do |link|
       CSV.open("politician_names.csv", "ab") do |csv|
-        csv << [
-          link
-        ]
+        csv << [ link ]
         counter += 1
       end
     end

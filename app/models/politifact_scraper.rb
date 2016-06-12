@@ -6,12 +6,10 @@ class PolitifactScraper < ActiveRecord::Base
 
       # Open the specified product page, throw it into a Nokogiri object
       puts "Opening: http://www.politifact.com/personalities/#{politician}/"
-      # Politician is the url
       puts "Scraping '#{politician}'"
       politicians_info << PolitifactScraper.scrape_politician_data(politician)
       puts "Stashing #{politicians_info.last.first_name} in array"
 
-      # save gathered info to a csv
       politicians_info.each do |the_politician|
         CSV.open("politician_info.csv", "ab") do |csv|
           csv << [
@@ -38,31 +36,19 @@ class PolitifactScraper < ActiveRecord::Base
     politician = PoliticianScraped.new
 
     politician.url = url
-    politician.first_name = parsed_page.children[1].children[1].children[1].
-                            children.text.split(' ')[0]
-    politician.last_name = parsed_page.children[1].children[1].children[1].
-                           children.text.split(' ')[1].gsub("'s", "")
-    politician.political_party =
-      (parsed_page.children - parsed_page.children.children)[1].children[3].
-      children[3].children[1].children[3].children[5].children[1].children[1].
-      children[3].children[3].children[1].children[3].
-      children.text.split(' ')[0]
+    name = parsed_page.css("title").children.text.split[0..1].join ' '
+    politician.first_name = name.split[0]
+    politician.last_name = name.split[1].gsub("'s", "")
 
-    checker = (parsed_page.children - parsed_page.children.children)[1].
-              children[3].children[3].children[1].children[3].children[5].
-              children[1].children[1].children[3].children[3].children[1].
-              children[5]
-    unless checker.nil?
-      politician.stance = checker.children[0].text.chomp
-    end
+    politician.political_party = parsed_page.css("h3.scorecard__title")
+      .text.split[0]
+    politician.stance = parsed_page.css("div .scorecard__bio-text").text.strip
+
     politician
   end
 
   class PoliticianScraped
     attr_accessor :url, :first_name, :last_name, :political_party
-    attr_accessor :stance, :birthday
-
-    def initialize
-    end
+    attr_accessor :stance
   end
 end
