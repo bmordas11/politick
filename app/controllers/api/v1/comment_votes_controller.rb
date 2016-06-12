@@ -38,11 +38,7 @@ module Api::V1
     end
 
     def flip_vote(vote)
-      if vote.user_vote
-        vote.user_vote = false
-      else
-        vote.user_vote = true
-      end
+      vote.user_vote = !vote.user_vote
       vote.save
     end
 

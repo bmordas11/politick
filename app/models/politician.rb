@@ -31,18 +31,15 @@ class Politician < ActiveRecord::Base
   end
 
   def find_average_rating
-    users_with_comments = []
-    comments.each { |comment| users_with_comments << comment.user }
+    users_with_comments = comments.map { |comment| comment.user }
     users_with_comments.uniq! { |user| user.id }
     return "N/A" if users_with_comments.empty?
 
     total_rating = 0.0
     users_with_comments.each do |user|
       user_rating = 0.0
-      politicians_comments = user.comments.where(politician_id: id)
-      politicians_comments.each do |comment|
-        user_rating += comment.rating
-      end
+      politicians_comments = Comment.where(politician_id: id, user_id: user.id)
+      politicians_comments.each { |comment| user_rating += comment.rating }
       total_rating += user_rating / politicians_comments.count
     end
     average_rating = total_rating / users_with_comments.length
