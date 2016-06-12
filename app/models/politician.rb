@@ -38,12 +38,7 @@ class Politician < ActiveRecord::Base
     total_rating = 0.0
     users_with_comments.each do |user|
       user_rating = 0.0
-      politicians_comments =
-        Comment.where
-        (
-          politician_id: id,
-          user_id: user.id
-        )
+      politicians_comments = Comment.where(politician_id: id, user_id: user.id)
       politicians_comments.each { |comment| user_rating += comment.rating }
       total_rating += user_rating / politicians_comments.count
     end
