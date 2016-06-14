@@ -14,15 +14,12 @@ gem 'dotenv-rails'
 
 gem 'simple_form'
 gem 'puma'
-gem 'fog'
-gem 'carrierwave'
 gem 'foundation-rails'
 gem 'foundation_rails_helper'
 gem 'devise'
 gem 'pg_search'
 gem 'jquery-infinite-pages'
 gem 'kaminari'
-gem 'vcr'
 
 group :development, :test do
   gem 'rspec-rails'
