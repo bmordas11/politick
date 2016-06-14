@@ -18,13 +18,8 @@ feature "user upvotes and downvotes a comment" do
     click_link 'All Politicians'
     click_link comment1.politician.full_name
 
-    within(".upper-#{comment1.id}") do
-      expect(page).to have_content("0")
-    end
-
-    within(".downer-#{comment1.id}") do
-      expect(page).to have_content("0")
-    end
+    within(".upper-#{comment1.id}") { expect(page).to have_content("0") }
+    within(".downer-#{comment1.id}") { expect(page).to have_content("0") }
   end
 
   scenario "signed-in user upvotes and downvotes a comment and is reflected on
@@ -40,20 +35,12 @@ feature "user upvotes and downvotes a comment" do
     click_link comment1.politician.full_name
 
     find(".arrow-up").click
-    within(".upper-#{comment1.id}") do
-      expect(page).to have_content("1")
-    end
-    within(".downer-#{comment1.id}") do
-      expect(page).to have_content("0")
-    end
+    within(".upper-#{comment1.id}") { expect(page).to have_content("1") }
+    within(".downer-#{comment1.id}") { expect(page).to have_content("0") }
 
     find(".arrow-down").click
-    within(".upper-#{comment1.id}") do
-      expect(page).to have_content("0")
-    end
-    within(".downer-#{comment1.id}") do
-      expect(page).to have_content("1")
-    end
+    within(".upper-#{comment1.id}") { expect(page).to have_content("0") }
+    within(".downer-#{comment1.id}") { expect(page).to have_content("1") }
   end
 
   scenario "signed out user upvotes a comment no vote is added", js: true do
@@ -61,13 +48,9 @@ feature "user upvotes and downvotes a comment" do
     click_link comment1.politician.full_name
 
     find(".arrow-up").click
-    within(".upper-#{comment1.id}") do
-      expect(page).to have_content("0")
-    end
+    within(".upper-#{comment1.id}") { expect(page).to have_content("0") }
 
     find(".arrow-down").click
-    within(".downer-#{comment1.id}") do
-      expect(page).to have_content("0")
-    end
+    within(".downer-#{comment1.id}") { expect(page).to have_content("0") }
   end
 end
