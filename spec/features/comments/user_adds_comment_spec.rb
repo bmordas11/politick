@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user comments on a politician' do
-  let!(:comment)  { FactoryGirl.create(:comment) }
+  let!(:comment) { FactoryGirl.create(:comment) }
 
   scenario 'successfully adds a comment' do
     visit root_path
