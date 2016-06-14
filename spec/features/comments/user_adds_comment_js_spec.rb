@@ -7,7 +7,7 @@ Capybara.register_driver :poltergeist do |app|
 end
 
 feature 'user comments on a politician with javascript' do
-  let!(:comment)  { FactoryGirl.create(:comment) }
+  let!(:comment) { FactoryGirl.create(:comment) }
 
   scenario 'successfully adds a javascript comment', js: true do
     visit root_path
@@ -42,6 +42,8 @@ feature 'user comments on a politician with javascript' do
     # fill_in 'comment_body', with: "This dude is so jacked it's insane!"
     # click_button 'Add Comment'
     # expect(page).to_not have_content("This dude is so jacked it's insane!")
-    # expect(page).to have_content("Rating is not included in the list. Comment not created.")
+    # expect(page).to have_content(
+    #   "Rating is not included in the list. Comment not created."
+    # )
   end
 end
