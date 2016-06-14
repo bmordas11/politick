@@ -9,27 +9,29 @@
 The Heroku link:
 http://politick.herokuapp.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+Info about this app:
 
 * Ruby version - (ruby 2.2.3)
-
-* System dependencies
 
 * Configuration (Puma web server, Devise user authentication)
 
 * Database creation (PostgreSQL database)
 
 * Database initialization
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
 
 * How to run the test suite:
-    - bundle (to make sure you have the correct gems)
-    - bundle exec rake (this command will run the test suite)
+  - bundle (to make sure you have the correct gems)
+  - export RAILS_ENV=test
+  - bundle exec rake db:schema:load
+  - bundle exec rake or bundle exec rspec spec (either will run the test suite)
 
-* Services (pg_search gem search function)
+* Services
+  - pg_search gem search function to search through all politicians
+  - Ability to comment on any politician (when logged in)
+  - Ability to upvote or downvote any comment made (when logged in)
 
 * Deployment instructions:
-    - Production: git push heroku master
-    - Development: bundle exec rails s (local server 3000)
+  - Production: git push heroku master
+  - Development: bundle exec rails s (localhost:3000)
