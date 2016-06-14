@@ -10,9 +10,10 @@ module Api::V1
       if @comment.save
         respond_to do |format|
           format.html do
-            render partial: 'append_comment',
-                            locals: { politician: @politicians, comment: @comment },
-                            notice: "Successfully added comment."
+            render partial:
+              'append_comment',
+              locals: { politician: @politicians, comment: @comment },
+              notice: "Successfully added comment."
           end
         end
       end
