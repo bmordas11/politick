@@ -11,8 +11,10 @@ module Api::V1
         respond_to do |format|
           format.html do
             render partial: 'append_comment',
-                    locals: {politician: @politicians, comment: @comment},
-                    notice: "Successfully added comment."
+                            locals: do
+                              politician: @politicians, comment: @comment
+                            end,
+                            notice: "Successfully added comment."
           end
         end
       end
