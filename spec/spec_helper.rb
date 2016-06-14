@@ -1,7 +1,9 @@
 require 'coveralls'
-Coveralls.wear!('rails')
+Coveralls.wear! 'rails'
+require 'support/wait_for_ajax'
 
 RSpec.configure do |config|
+  config.include WaitForAjax, type: :feature
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
@@ -21,4 +23,7 @@ RSpec.configure do |config|
   config.before(:each, js: true) do
     DatabaseCleaner.strategy = :truncation
   end
+
+  config.before(:each) { DatabaseCleaner.start }
+  config.after(:each) { DatabaseCleaner.clean }
 end
