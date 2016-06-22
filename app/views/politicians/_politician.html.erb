@@ -1,0 +1,5 @@
+<tr class='politician'>
+  <td><%= link_to(politician.full_name, politician_path(politician)) %></td>
+  <td><%= politician.political_party %></td>
+  <td style="text-align: center;"><%= politician.find_average_rating %></td>
+</tr>

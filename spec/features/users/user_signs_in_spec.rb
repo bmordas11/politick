@@ -20,7 +20,7 @@ feature 'user signs in' do
     fill_in 'Password', with: 'password'
     click_button 'Sign In'
 
-    expect(page).to have_content('Invalid email or password.')
+    expect(page).to have_content('Invalid Email or password.')
     expect(page).to_not have_content('Welcome Back.')
     expect(page).to_not have_content('Sign Out')
   end
@@ -33,7 +33,7 @@ feature 'user signs in' do
     fill_in 'Password', with: 'incorrectPassword'
     click_button 'Sign In'
 
-    expect(page).to have_content('Invalid email or password.')
+    expect(page).to have_content('Invalid Email or password.')
     expect(page).to_not have_content('Sign Out')
   end
 

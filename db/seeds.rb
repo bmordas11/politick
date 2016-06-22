@@ -74,7 +74,6 @@ BLACKLIST = [
 ].map!(&:freeze).freeze
 
 politician_name_list -= BLACKLIST
-
 politician_name_list.uniq!
 PolitifactScraper.scrape(politician_name_list)
 
