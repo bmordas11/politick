@@ -10,10 +10,9 @@ class PoliticiansController < ApplicationController
       @politicians = Politician.search(params[:query])
       @politicians.uniq! { |politician| politician.id }
     end
+    @politicians = Kaminari.paginate_array(@politicians).page(params[:page])
 
-    if @politicians.empty?
-      @no_results = true
-    end
+    @no_results = true if @politicians.empty?
   end
 
   def show

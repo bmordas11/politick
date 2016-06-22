@@ -3,22 +3,19 @@
 <% if @no_results %>
   <h5>No Results Found</h5>
 <% else %>
-  <table border="1" class="small-6">
-    <tr>
-      <th>Full Name</th>
-      <th>Party</th>
-      <th>Avg. User Rating (out of 5)</th>
-    </tr>
-    <% @politicians.each do |politician| %>
+  <table border='1' class='small-6' id='politicians'>
+    <thead>
       <tr>
-        <td>
-          <%= link_to(politician.full_name, politician_path(politician)) %>
-        </td>
-        <td><%= politician.political_party %></td>
-        <td style="text-align: center;">
-          <%= politician.find_average_rating %>
-        </td>
+        <th>Full Name</th>
+        <th>Party</th>
+        <th>Avg. User Rating (out of 5)</th>
       </tr>
-    <% end %>
+    </thead>
+
+    <tbody class='page'>
+      <%= render @politicians %>
+    </tbody>
   </table>
+
+  <%= paginate @politicians %>
 <% end %>
