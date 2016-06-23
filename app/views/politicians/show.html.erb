@@ -4,15 +4,18 @@
     <div class='row'>
       <h1><%= @politician.full_name %> Show Page</h1>
       <h5>
-        <div class='row' style='padding-left: 2%;'>
-          <% if @politician.owner?(current_user) || current_user.try(:admin?) %>
-            <%= button_to 'Edit', edit_politician_path(@politician),
-              class: 'button small-1 columns', method: :get %>
-            <%= button_to 'Delete', @politician, method: :delete,
-              data: { confirm: "Really wanna delete this politician?" },
-              class: 'button small-1 columns end' %>
+        <% if !current_user.nil? %>
+          <% if @politician.owner?(current_user) || current_user.
+            try(:admin?) || (current_user.politician? && current_user.id == @politician.actually_them) %>
+            <div class='row' style='padding-left: 2%;'>
+              <%= button_to 'Edit', edit_politician_path(@politician),
+                class: 'button small-1 columns', method: :get %>
+              <%= button_to 'Delete', @politician, method: :delete,
+                data: { confirm: "Really wanna delete this politician?" },
+                class: 'button small-1 columns end' %>
+            </div>
           <% end %>
-        </div>
+        <% end %>
       </h5>
     </div>
     <div class="row">
@@ -37,9 +40,7 @@
       <p class="small-2 columns">User</p>
       <p class="comments small-5 columns">Comment</p>
       <p class="small-1 columns end">Rating</p>
-      <p class="small-2 columns end" style="padding-left: 4%;">
-        Votes
-      </p>
+      <p class="small-2 columns end" style="padding-left: 4%;">Votes</p>
     </div>
 
     <div class="all-comments">
