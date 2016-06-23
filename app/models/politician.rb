@@ -1,5 +1,6 @@
 class Politician < ActiveRecord::Base
   has_many :comments, dependent: :destroy
+  belongs_to :user
 
   validates :first_name, presence: true, length: { in: 1..70 }
   validates :first_name, uniqueness: {scope: [:last_name, :political_party]}
@@ -21,13 +22,16 @@ class Politician < ActiveRecord::Base
     using: { tsearch: { prefix: true, dictionary: "english" } }
 
   scope :search, -> (query) do
-    if query.present?
-      search_by_attributes(query) + search_comments(query)
-    end
+    search_by_attributes(query) + search_comments(query) if query.present?
   end
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def owner?(a_user)
+    return a_user.id == self.user.id if !a_user.nil? && !self.user.nil?
+    false
   end
 
   def find_average_rating
