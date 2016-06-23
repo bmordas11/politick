@@ -7,15 +7,12 @@ class AdminsController < ApplicationController
     @politicians = Politician.all
   end
 
-  def show
-    @admin = Admin.find(params[:id])
-  end
-
   protected
 
   def authorize_user
     if !user_signed_in? || !current_user.admin?
-      raise ActionController::RoutingError.new("Not Found")
+      redirect_to politicians_path
+      flash[:warning] = "Unauthorized to enter this page."
     end
   end
 end
