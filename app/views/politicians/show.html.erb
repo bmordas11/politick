@@ -1,7 +1,20 @@
 <div class='row'>
-  <div class="column small-12">
-    <%= hidden_field( :politician, :id, :value => @politician.id ) %>
-    <h1><%= @politician.full_name %> Show Page</h1>
+  <div class="columns small-12">
+    <%= hidden_field( :politician, :id, value: @politician.id ) %>
+    <div class='row'>
+      <h1><%= @politician.full_name %> Show Page</h1>
+      <h5>
+        <div class='row' style='padding-left: 2%;'>
+          <% if @politician.owner?(current_user) || current_user.try(:admin?) %>
+            <%= button_to 'Edit', edit_politician_path(@politician),
+              class: 'button small-1 columns', method: :get %>
+            <%= button_to 'Delete', @politician, method: :delete,
+              data: { confirm: "Really wanna delete this politician?" },
+              class: 'button small-1 columns end' %>
+          <% end %>
+        </div>
+      </h5>
+    </div>
     <div class="row">
       <div class="small-2 columns politician-info">
         Party: <%= @politician.political_party %>

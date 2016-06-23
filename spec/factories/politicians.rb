@@ -6,5 +6,7 @@ FactoryGirl.define do
     political_party "Republican"
     stance "I am very interested in bridges."
     sequence(:birthday) { |n| "1968-0#{n}-22" }
+
+    user
   end
 end
