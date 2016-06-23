@@ -30,7 +30,7 @@ class Politician < ActiveRecord::Base
   end
 
   def owner?(a_user)
-    return a_user.id == self.user.id if !a_user.nil? && !self.user.nil?
+    return a_user.id == user.id if !a_user.nil? && !user.nil?
     false
   end
 
