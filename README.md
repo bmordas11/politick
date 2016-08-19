@@ -11,7 +11,7 @@ http://politick.herokuapp.com/
 
 Info about this app:
 
-* Ruby version - (ruby 2.2.3)
+* Ruby version - (ruby 2.3.0)
 
 * Configuration (Puma web server, Devise user authentication)
 
@@ -28,7 +28,7 @@ Info about this app:
   - bundle exec rake or bundle exec rspec spec (either will run the test suite)
 
 * Services
-  - pg_search gem search function to search through all politicians
+  - pg_search gem -> search function to search through all politicians
   - Ability to comment on any politician (when logged in)
   - Ability to upvote or downvote any comment made (when logged in)
 
